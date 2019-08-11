@@ -1,0 +1,78 @@
+
+<script>
+
+jQuery(document).ready(function() {
+    setTimeout(function() {
+
+	// ... get all form-groups
+	var elements =  $("#productSearchv3Form").find('.sm-tarifrechner').find('.form-group') ;
+	var inputs = $("#mediaType");
+	
+     console.log($("#productSearchv3Form").children('.sm-tarifrechner'));
+	var count = elements.length;
+		
+	var gridSizes = new Array(count);
+
+	switch (count) {
+	   case 4:
+		 gridSizes[0] = 6;
+		 gridSizes[1] = 6;
+		 gridSizes[2] = 6;
+		 gridSizes[3] = 6;
+		break;
+	 case 5:
+		 gridSizes[0] = 4;
+		 gridSizes[1] = 4;
+		 gridSizes[2] = 5;
+		 gridSizes[3] = 5;
+		 gridSizes[4] = 6;
+		break;
+	 default:
+		break;
+	}
+
+     // ... clear container to rebuild
+	$("#productSearchv3Form").children('.theme-energie').children('.section-filter').children('.container').children('.sm-tarifrechner').children('*').remove( "*" );
+
+	// ... use fluid for responsiv by bootstrap
+	
+	$("#productSearchv3Form").children('.theme-energie').children('.section-filter').children('.container').children('.sm-tarifrechner').append( "<div class=\"container\" id=\"1234\"> <div class=\"row-fluid\">  </div> ");
+	//.children('.sm-tarifrechner')
+	$('#1234').css( { "width" : "100%" } ) ; 
+
+	// ... set style for media
+	$("#productSearchv3Form").append('<style type="text/css"> @media screen and (max-width: 992px){ .form-property-resp { width:100% !important; } }</style>');
+	$("#productSearchv3Form").append('<style type="text/css"> @media screen and (min-width: 992px){ .form-property-resp { width:50% !important; } }</style>');
+	$("#productSearchv3Form").append('<style type="text/css">@media screen and (min-width: 992px){  .form-property-resp-collumn { float: none !important; vertical-align: bottom; display: inline-block; } }</style>'); //.form-group {margin-left: 30px !important;}
+	
+	
+	
+	// ... bind fields to container-fluid
+	for(var i = 0; i < elements.length; i++){
+		
+		var ele = $(elements[i])
+	
+		ele.addClass("form-property-resp-collumn");
+		ele.addClass("col-md-" + gridSizes[i] );
+	
+	//	ele.removeClass("form-group");
+	//	ele.removeClass("form-group1");
+	//	ele.removeClass("form-group4");
+
+		ele.children('*').addClass('form-property-resp');
+    
+    	$("#1234").children(".row-fluid").append(ele);
+	}
+    
+    $("#button_productSearchv3_data_search").css( { "padding" : "0px", "max-width" : "100%" } ) ; 
+	 $("#button_productSearchv3_data_research").css( { "padding" : "0px", "max-width" : "100%" } ) ; 
+
+  	$("#1234").children(".row-fluid").append(inputs);
+
+    console.log($("form-group"));
+
+    }, 14000);
+   
+});
+
+</script>
